@@ -42,11 +42,10 @@
                 android:id="@+id/txtUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz"
                 android:ems="10"
                 android:fontFamily="@font/interstate_lightcondensed"
                 android:hint="@string/hint_usermail"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:padding="@dimen/login_padding"
                 android:textColor="@color/primaryText"
                 android:textSize="@dimen/login_text_size" />
