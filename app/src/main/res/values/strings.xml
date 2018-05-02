@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">QuinielaAndroid</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="hint_username">Nombre de usuario</string>
+    <string name="hint_usermail">Correo Electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btnLogin">Login</string>
+    <string name="createAccount"><u>¿No tienes cuenta?, Crea una aquí</u></string>
+    <string name="forgotPassword"><u>¿Olvidaste tu contraseña?</u></string>
+    <string name="btnRecoverLogin">Recuperar contraseña</string>
+    <string name="barTittle">Título</string>
+    <string name="btnJoin">Únuete</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="create_account">Crear cuenta</string>
+    <string name="menu_about">Acerca de</string>
+    <string name="menu_signout">Cerrar sesión</string>
+</resources>
