@@ -23,10 +23,17 @@
             android:ems="10"
             android:fontFamily="@font/interstate_lightcondensed"
             android:hint="@string/hint_username"
-            android:inputType="text"
+            android:inputType="text|textCapSentences"
             android:padding="@dimen/login_padding"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/login_text_size" />
+
+       <Spinner
+           android:id="@+id/teamSpinner"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:prompt="@string/country_prompt"
+           android:padding="@dimen/login_padding"/>
 
         <EditText
             android:id="@+id/edtUserMail"

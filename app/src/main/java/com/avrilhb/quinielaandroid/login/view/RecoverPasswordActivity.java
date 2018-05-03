@@ -1,19 +1,37 @@
 package com.avrilhb.quinielaandroid.login.view;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avrilhb.quinielaandroid.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class RecoverPasswordActivity extends AppCompatActivity {
 
     @BindView(R.id.txtTitleTool) TextView txtTitleTool;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.txtRecoverPassword) EditText txtPassword;
+    @BindView(R.id.btnRecoverPassword) Button btnRecoverPassword;
+
+    private FirebaseAuth firebaseAuth;
+    private static final String TAG = "RecoverPasswordActivity";
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +42,9 @@ public class RecoverPasswordActivity extends AppCompatActivity {
 
         showToolbar(true);
         txtTitleTool.setText(getResources().getString(R.string.btnRecoverLogin));
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
     }
 
     public void showToolbar(boolean upButton){
@@ -31,5 +52,25 @@ public class RecoverPasswordActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
 
+    }
+
+    @OnClick(R.id.btnRecoverPassword)
+    public void recoverPassword(View view) {
+        email = txtPassword.getText().toString();
+
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(RecoverPasswordActivity.this, "Correo enviado exitosamente", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Email sent.");
+                        }else{
+                            Toast.makeText(RecoverPasswordActivity.this, "Ocurrió un Error al recuperar password", Toast.LENGTH_SHORT).show();
+                            FirebaseCrash.logcat(Log.ERROR, TAG, "Ocurrió un Error al recuperar password" );
+
+                        }
+                    }
+                });
     }
 }

@@ -20,4 +20,42 @@
     <string name="tab_quiniela">Mi quiniela</string>
     <string name="tab_resultado">Resultados</string>
 
+    <!-- Team´s Array !-->
+    <string name="country_prompt">Elije tu equipo</string>
+
+    <string-array name="team_array">
+        <item>Alemania</item>
+        <item>Argentina</item>
+        <item>Arabía Saudí</item>
+        <item>Australia</item>
+        <item>Bélgica</item>
+        <item>Brasil</item>
+        <item>Colombia</item>
+        <item>Corea del Sur</item>
+        <item>Costa Rica</item>
+        <item>Croacia</item>
+        <item>Dinamarca</item>
+        <item>Egipto</item>
+        <item>España</item>
+        <item>Francia</item>
+        <item>Inglaterra</item>
+        <item>Irán</item>
+        <item>Islandia</item>
+        <item>Japón</item>
+        <item>Marruecos</item>
+        <item>México</item>
+        <item>Nigeria</item>
+        <item>Panamá</item>
+        <item>Perú</item>
+        <item>Polonia</item>
+        <item>Portugal</item>
+        <item>Rusia</item>
+        <item>Senegal</item>
+        <item>Serbia</item>
+        <item>Suecia</item>
+        <item>Suiza</item>
+        <item>Túnez</item>
+        <item>Uruguay</item>
+    </string-array>
+
 </resources>
