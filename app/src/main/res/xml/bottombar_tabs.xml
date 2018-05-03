@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/marcadores"
+        title="@string/tab_marcadores"
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_shirt"/>
+    <tab
+        id="@+id/quiniela"
+        title="@string/tab_quiniela"
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_player"/>
+    <tab
+        id="@+id/resultados"
+        title="@string/tab_resultado"
+        barColorWhenSelected="@color/colorPrimary"
+        icon="@drawable/ic_cup"/>
+</tabs>
