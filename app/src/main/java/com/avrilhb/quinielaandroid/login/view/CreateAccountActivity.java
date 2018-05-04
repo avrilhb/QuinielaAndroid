@@ -1,5 +1,6 @@
 package com.avrilhb.quinielaandroid.login.view;
 
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,6 +53,8 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final String TAG = "CreateAccountActivity";
     private boolean validaData = false;
+    String colors[] = {"Red","Blue","White","Yellow","Black", "Green","Purple","Orange","Grey"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,10 +92,12 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     private void loadSpinner() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.team_array, android.R.layout.simple_spinner_dropdown_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        teamSpinner.setAdapter(adapter);
+
+        ArrayAdapter<String> spinnerArrayAdapter  = new ArrayAdapter<String>(this,
+                R.layout.spinner_item,
+                getResources().getStringArray(R.array.team_array));
+        teamSpinner.setAdapter(spinnerArrayAdapter);
+
     }
 
     @OnClick(R.id.btnJoin)

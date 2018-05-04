@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.avrilhb.quinielaandroid.login.view.CreateAccountActivity">
+    tools:context="com.avrilhb.quinielaandroid.login.view.CreateAccountActivity"
+    android:background="@color/white">
 
     <include layout="@layout/toolbar" />
 
@@ -32,8 +33,7 @@
            android:id="@+id/teamSpinner"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:prompt="@string/country_prompt"
-           android:padding="@dimen/login_padding"/>
+           android:prompt="@string/country_prompt" />
 
         <EditText
             android:id="@+id/edtUserMail"
