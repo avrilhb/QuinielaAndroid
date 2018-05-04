@@ -53,8 +53,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private static final String TAG = "CreateAccountActivity";
     private boolean validaData = false;
-    String colors[] = {"Red","Blue","White","Yellow","Black", "Green","Purple","Orange","Grey"};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

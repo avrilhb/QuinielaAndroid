@@ -32,6 +32,8 @@ public class RecoverPasswordActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private static final String TAG = "RecoverPasswordActivity";
     private String email;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private boolean validaData = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +60,36 @@ public class RecoverPasswordActivity extends AppCompatActivity {
     public void recoverPassword(View view) {
         email = txtPassword.getText().toString();
 
-        firebaseAuth.sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RecoverPasswordActivity.this, "Correo enviado exitosamente", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "Email sent.");
-                        }else{
-                            Toast.makeText(RecoverPasswordActivity.this, "Ocurrió un Error al recuperar password", Toast.LENGTH_SHORT).show();
-                            FirebaseCrash.logcat(Log.ERROR, TAG, "Ocurrió un Error al recuperar password" );
+        validateData(email);
 
+        if(validaData){
+            firebaseAuth.sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(RecoverPasswordActivity.this, "Correo enviado exitosamente", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "Email sent.");
+                            }else{
+                                Toast.makeText(RecoverPasswordActivity.this, "Ocurrió un error al recuperar la contraseña", Toast.LENGTH_SHORT).show();
+                                FirebaseCrash.logcat(Log.ERROR, TAG, "Ocurrió un Error al recuperar password" );
+
+                            }
                         }
-                    }
-                });
+                    });
+        }
+    }
+
+    private void validateData(String email) {
+        if(!email.equals("")) {
+            if(!email.matches(emailPattern)){
+                Toast.makeText(this, "Por favor introduce un email válido", Toast.LENGTH_SHORT).show();
+            }else{
+                validaData = true;
+            }
+        }else{
+            validaData = false;
+            Toast.makeText(this, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show();
+        }
     }
 }
