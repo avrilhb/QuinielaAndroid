@@ -58,4 +58,10 @@
         <item>Uruguay</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="userName">Usuario</string>
+    <string name="team">Equipo</string>
+    <string name="points">Puntos:</string>
+
 </resources>
