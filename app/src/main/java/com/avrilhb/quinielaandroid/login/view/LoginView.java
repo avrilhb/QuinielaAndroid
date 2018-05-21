@@ -16,4 +16,5 @@ public interface LoginView {
     void enableInput();
     void disableInput();
     void goMenu();
+    void signUp(String email, String password);
 }

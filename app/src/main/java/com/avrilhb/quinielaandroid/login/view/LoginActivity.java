@@ -6,8 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.avrilhb.quinielaandroid.R;
+import com.avrilhb.quinielaandroid.login.presenter.LoginPresenter;
+import com.avrilhb.quinielaandroid.login.presenter.LoginPresenterImpl;
 import com.avrilhb.quinielaandroid.view.ContainerActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,10 +24,18 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
 
     @BindView(R.id.txtCreateAccount) TextView txtCreateAccount;
     @BindView(R.id.txtForgotPassword) TextView txtForgotPassword;
+    @BindView(R.id.btnLogin) TextView btnLogin;
+    @BindView(R.id.txtUser) EditText txtUser;
+    @BindView(R.id.txtPassword) EditText txtPassword;
 
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LoginActivity";
+    private String password;
+    private String email;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private boolean validaData = false;
+    private LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +43,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+
+        presenter = new LoginPresenterImpl(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -48,6 +63,32 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                 // ...
             }
         };
+
+    }
+
+    @OnClick (R.id.btnLogin)
+    public void signUp(View view) {
+        email = txtUser.getText().toString();
+        password = txtPassword.getText().toString();
+
+        validateData(email, password);
+
+        if(validaData){
+            signUp(email, password);
+        }
+    }
+
+    private void validateData(String email, String password) {
+        if(!email.equals("") && !password.equals("")){
+            if(!email.matches(emailPattern)){
+                Toast.makeText(this, "Por favor introduce un email válido", Toast.LENGTH_SHORT).show();
+            }else{
+                validaData = true;
+            }
+        }else{
+            validaData = false;
+            Toast.makeText(this, "Existen campos vacíos", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -92,6 +133,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
     public void goMenu() {
         Intent intent = new Intent(this, ContainerActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void signUp(String email, String password) {
+        presenter.signUp(email, password, this, firebaseAuth);
     }
 
     @Override

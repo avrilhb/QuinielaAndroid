@@ -1,6 +1,7 @@
 package com.avrilhb.quinielaandroid.login.view;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avrilhb.quinielaandroid.R;
+import com.avrilhb.quinielaandroid.model.User;
+import com.avrilhb.quinielaandroid.view.ContainerActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -100,7 +103,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnJoin)
     public void createAccount(View view) {
-        // TODO submit data to server...
         email = edtUserMail.getText().toString();
         password = edtPassword.getText().toString();
         confirmPassword = edtConfirmPassword.getText().toString();
@@ -115,7 +117,10 @@ public class CreateAccountActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(CreateAccountActivity.this, "Cuenta Creada Exitosamente", Toast.LENGTH_SHORT).show();
-                            mUsersReference.push().setValue(userName, selectedTeam);
+                            //Save user on Database
+                            User user = new User(userName, selectedTeam, 0, email);
+                            mUsersReference.push().setValue(user);
+                            goMenu();
                         }else {
                             Toast.makeText(CreateAccountActivity.this, "Ocurrió un Error al crear la cuenta", Toast.LENGTH_SHORT).show();
                             FirebaseCrash.logcat(Log.ERROR, TAG, "Ocurrió un Error al crear la cuenta" );
@@ -158,4 +163,12 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onStop();
         firebaseAuth.removeAuthStateListener(mAuthListener);
     }
+
+    public void goMenu(){
+        //Go to Container Activity
+        Intent intent = new Intent(this, ContainerActivity.class);
+        startActivity(intent);
+    }
+
+
 }

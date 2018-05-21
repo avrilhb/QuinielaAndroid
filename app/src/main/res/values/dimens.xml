@@ -6,4 +6,5 @@
     <dimen name="padding">8dp</dimen>
     <dimen name="bottombar_height">70dp</dimen>
     <dimen name="txtPaddingLeft">8dp</dimen>
+    <dimen name="txt_user_name">30dp</dimen>
 </resources>

@@ -38,8 +38,6 @@ public class ContainerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         FirebaseCrash.log("Iniciando " + TAG);
 
         setContentView(R.layout.activity_container);
